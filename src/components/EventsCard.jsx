@@ -21,7 +21,6 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
-        width: '85%',
         height: '100%',
       }}
     >
@@ -56,9 +55,7 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
               {`Number of Detections: ${detectionsList.length}`}
             </Typography>
           </CardContent>
-          {detectionsList.length > 0 && (
-            <EventsDetectionCard detectionsList={detectionsList} />
-          )}
+          <EventsDetectionCard detectionsList={detectionsList} />
         </Card>
       </Box>
       <Button onClick={() => changeImageIndex('N')} label="Next Image" />

@@ -10,6 +10,13 @@ export const globalReducer = (state, action) => {
       };
     }
 
+    case ACTIONS.RESET_IMAGE_INDEX: {
+      return {
+        ...state,
+        currentImageIndex: 0,
+      };
+    }
+
     default:
       return state;
   }

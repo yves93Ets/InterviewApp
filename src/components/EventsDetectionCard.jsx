@@ -12,17 +12,21 @@ import { ExpandMore } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 function EventsDetectionCard({ detectionsList }) {
   const [expanded, setExpanded] = useState(false);
+  const hasList = detectionsList.length > 0;
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    if (hasList) {
+      setExpanded(!expanded);
+    }
   };
 
   const Expand = styled((props) => {
-    const { expand, ...other } = props;
+    const { expand, color, ...other } = props;
     return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
+  })(({ theme, expand, color }) => ({
     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
     marginLeft: 'auto',
+    color,
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -33,6 +37,7 @@ function EventsDetectionCard({ detectionsList }) {
       <CardActions disableSpacing>
         <Expand
           expand={expanded}
+          color={hasList ? 'black' : 'lightgrey'}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"

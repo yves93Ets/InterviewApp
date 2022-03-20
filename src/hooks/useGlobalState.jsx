@@ -12,9 +12,16 @@ const useGlobalState = () => {
     });
   };
 
+  const resetImageIndex = () => {
+    dispatch({
+      type: ACTIONS.RESET_IMAGE_INDEX,
+    });
+  };
+
   const provider = {
     ...globalState,
     changeImageIndex,
+    resetImageIndex,
   };
 
   return provider;
