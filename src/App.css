@@ -28,3 +28,8 @@
   cursor: pointer;
   margin: 4px;
 }
+
+.navigation .toggle {
+  place-content: center;
+  color: white;
+}

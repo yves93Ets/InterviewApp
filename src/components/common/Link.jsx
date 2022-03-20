@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import theme from '../../utils/theme';
+import { useTranslation } from 'react-i18next';
 export default function LinkComponent({ route = '' }) {
+  const { t } = useTranslation();
   return (
     <NavLink
       style={({ isActive }) => {
@@ -12,7 +14,7 @@ export default function LinkComponent({ route = '' }) {
       to={`/${route}`}
       key={route}
     >
-      {route}
+      {t(route)}
     </NavLink>
   );
 }

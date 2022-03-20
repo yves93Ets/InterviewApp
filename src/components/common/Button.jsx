@@ -1,7 +1,9 @@
 import Button from '@mui/material/Button';
 import theme from '../../utils/theme';
+import { useTranslation } from 'react-i18next';
 
 export default function ButtonComponent({ onClick, label = 'No label yet' }) {
+  const { t } = useTranslation();
   return (
     <Button
       variant="contained"
@@ -12,7 +14,7 @@ export default function ButtonComponent({ onClick, label = 'No label yet' }) {
         margin: theme.margin.sm,
       }}
     >
-      {label}
+      {t(label)}
     </Button>
   );
 }

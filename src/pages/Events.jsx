@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import useGlobalState from '../hooks/useGlobalState';
 import EventsCard from '../components/EventsCard';
-import { Switch, Typography, Stack, Box, Grid } from '@mui/material';
-
+import { Stack, Box } from '@mui/material';
+import { Toggle } from '../components/common';
 function Events() {
   const { images, currentImageIndex, resetImageIndex } = useGlobalState();
   const [filteredImages, setfilteredImages] = useState(images);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   if (!images) return <p>No images</p>;
   const image = filteredImages[currentImageIndex];
@@ -17,19 +17,14 @@ function Events() {
     const filteredList = checked
       ? images.filter((img) => img.detectionsList.length > 0)
       : images;
-    console.log(`filteredList`, filteredList);
     resetImageIndex();
     setfilteredImages(filteredList);
   };
 
   return (
-    <Box>
+    <Box sx={{ width: '85%' }}>
       <Stack spacing={1} alignItems="center">
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Typography>All</Typography>
-          <Switch color="warning" defaultChecked onChange={handleChange} />
-          <Typography>Filtered</Typography>
-        </Stack>
+        <Toggle prefix="all" suffix="filtered" handleChange={handleChange} />
         <EventsCard {...{ image, currentImageIndex, totalImages }} />
       </Stack>
     </Box>

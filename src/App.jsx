@@ -6,6 +6,8 @@ import { GlobalContextProvider as GlobalProvider } from './hooks/GlobalContext';
 import { globalReducer } from './hooks/globalReducer';
 import { createInitialState } from './hooks/createInitialState';
 import { BASE_URL } from './utils/constants';
+import './i18n/i18n';
+
 function App() {
   const [isError, setIsError] = useState(false);
   const [initialState, setinitialState] = useState();

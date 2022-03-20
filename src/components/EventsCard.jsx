@@ -2,8 +2,10 @@ import { Button } from './common';
 import useGlobalState from '../hooks/useGlobalState';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import EventsDetectionCard from './EventsDetectionCard';
+import { useTranslation } from 'react-i18next';
 
 function EventsCard({ totalImages, image, currentImageIndex }) {
+  const { t } = useTranslation();
   const { changeImageIndex } = useGlobalState();
   const {
     detectionsList,
@@ -24,7 +26,7 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
         height: '100%',
       }}
     >
-      <Button onClick={() => changeImageIndex('P')} label="previous Image" />
+      <Button onClick={() => changeImageIndex('P')} label="previousImage" />
       <Box>
         <Box
           style={{
@@ -33,8 +35,13 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
             justifyContent: 'space-between',
           }}
         >
-          <Box>total images: {totalImages}</Box>
-          <Box> Index: {currentImageIndex} </Box>
+          <Box>
+            {t('totalImages')}: {totalImages}
+          </Box>
+          <Box>
+            {' '}
+            {t('index')}: {currentImageIndex}{' '}
+          </Box>
         </Box>
         <img alt={blobContainer} src={jpg} />
 
@@ -45,20 +52,25 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
               color="text.secondary"
               gutterBottom
             >
-              {image?.createdOn && <Box> Scan Timestamp: {createdOn} </Box>}
+              {image?.createdOn && (
+                <Box>
+                  {' '}
+                  {t('scannedAt')}: {createdOn}{' '}
+                </Box>
+              )}
             </Typography>
             <Typography variant="body2">
-              {`Overall confidence: ${overallConf}`}
+              {`${t('overalConfidence')}: ${overallConf}`}
               <br />
-              {`Noise floor metric: ${noiseFloorMetric}`}
+              {`${t('noiseMetric')}: ${noiseFloorMetric}`}
               <br />
-              {`Number of Detections: ${detectionsList.length}`}
+              {`${t('nDetections')}: ${detectionsList.length}`}
             </Typography>
           </CardContent>
           <EventsDetectionCard detectionsList={detectionsList} />
         </Card>
       </Box>
-      <Button onClick={() => changeImageIndex('N')} label="Next Image" />
+      <Button onClick={() => changeImageIndex('N')} label="nextImage" />
     </Box>
   );
 }
