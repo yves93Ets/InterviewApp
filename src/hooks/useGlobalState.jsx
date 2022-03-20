@@ -12,9 +12,10 @@ const useGlobalState = () => {
     });
   };
 
-  const resetImageIndex = () => {
+  const resetImageIndex = (maxIndex) => {
     dispatch({
       type: ACTIONS.RESET_IMAGE_INDEX,
+      payload: { maxIndex },
     });
   };
 

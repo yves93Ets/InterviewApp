@@ -22,7 +22,7 @@ function App() {
   };
   useEffect(() => {
     getEvents();
-  }, []);
+  }, [isError]);
 
   if (!initialState) return null;
 

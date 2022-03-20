@@ -53,10 +53,9 @@ function EventsCard({ totalImages, image, currentImageIndex }) {
               gutterBottom
             >
               {image?.createdOn && (
-                <Box>
-                  {' '}
+                <>
                   {t('scannedAt')}: {createdOn}{' '}
-                </Box>
+                </>
               )}
             </Typography>
             <Typography variant="body2">

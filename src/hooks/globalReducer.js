@@ -14,6 +14,7 @@ export const globalReducer = (state, action) => {
       return {
         ...state,
         currentImageIndex: 0,
+        maxIndex: payload.maxIndex,
       };
     }
 
@@ -22,9 +23,9 @@ export const globalReducer = (state, action) => {
   }
 };
 
-const changeImageIndex = (direction, { currentImageIndex, images }) => {
+const changeImageIndex = (direction, { currentImageIndex, maxIndex }) => {
   const first = 0;
-  const last = images.length - 1;
+  const last = maxIndex;
   if (direction === 'N' && currentImageIndex === last) return first;
   if (direction === 'P' && currentImageIndex === first) return last;
 

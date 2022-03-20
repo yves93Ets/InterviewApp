@@ -17,7 +17,8 @@ function Events() {
     const filteredList = checked
       ? images.filter((img) => img.detectionsList.length > 0)
       : images;
-    resetImageIndex();
+    const maxIndex = filteredList.length - 1;
+    resetImageIndex(maxIndex);
     setfilteredImages(filteredList);
   };
 
