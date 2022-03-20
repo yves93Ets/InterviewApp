@@ -54,3 +54,12 @@ As our projects get larger and more complex, it becomes harder to manage our app
 
 More information about Redux can be found [here](https://redux.js.org/introduction/getting-started).\
 More information about React Context can be found [here](https://reactjs.org/docs/context.html).
+
+Done
+
+- Right & Left Arrow Buttons
+- Filter Images
+- Display Image Metadata
+- Navigation Bar
+- Redux/Context (hooks context)
+- i18n

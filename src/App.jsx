@@ -31,7 +31,7 @@ function App() {
       <Fade in={isError} className="warning">
         <Alert severity="warning" onClick={() => setIsError(false)}>
           <AlertTitle>Error</AlertTitle>
-          This is an error alert — <strong>check it out!</strong>
+          Something went wrong <strong>check it out!</strong>
         </Alert>
       </Fade>
       <GlobalProvider reducer={globalReducer} initialState={initialState}>
