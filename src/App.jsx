@@ -1,42 +1,41 @@
+import { useState, useEffect } from 'react';
 import './App.css';
-import Navigation from './pages/Navigation';
-import Home from './pages/Home';
-import Events from './pages/Events';
-import NoMatch from './pages/NoMatch';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import Main from './Main';
+import { Box, Alert, AlertTitle, Fade } from '@mui/material';
+import { GlobalContextProvider as GlobalProvider } from './hooks/GlobalContext';
+import { globalReducer } from './hooks/globalReducer';
+import { createInitialState } from './hooks/createInitialState';
+import { BASE_URL } from './utils/constants';
 function App() {
-  // const axios = require('axios');
-  // //TODO: API functions (more to be added) should be in their own file!
-  // const getEvents = () => {
-  //   axios
-  //     .get(`${BASE_URL}/events`)
-  //     .then(function (response) {
-  //       setImages(response.data.scanResults);
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       //TODO: this should display an error in the UI!
-  //       console.log(error);
-  //     });
-  // };
+  const [isError, setIsError] = useState(false);
+  const [initialState, setinitialState] = useState();
+  const axios = require('axios');
+  const getEvents = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/events`);
+      setinitialState(createInitialState(response.data));
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
 
-  // useEffect(() => {
-  //   getEvents();
-  // }, []);
+  if (!initialState) return null;
 
   return (
-    <div className="App">
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-      </Router>
-    </div>
+    <Box>
+      <Fade in={isError} className="warning">
+        <Alert severity="warning" onClick={() => setIsError(false)}>
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>
+      </Fade>
+      <GlobalProvider reducer={globalReducer} initialState={initialState}>
+        <Main />
+      </GlobalProvider>
+    </Box>
   );
 }
 

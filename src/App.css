@@ -21,3 +21,10 @@
 .home h1 {
   color: #f05423;
 }
+
+.warning {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  margin: 4px;
+}
