@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
 }
 
 .link {
@@ -8,5 +11,13 @@
 }
 
 .link:hover {
+  color: #f05423;
+}
+
+.home {
+  width: 85%;
+}
+
+.home h1 {
   color: #f05423;
 }
